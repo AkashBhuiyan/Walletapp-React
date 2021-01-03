@@ -28,7 +28,7 @@ class Nav extends Component {
                                 <a className="nav-link " href="register.html">
                                     Sign Up
                                 </a>
-                            </li>
+                            </li> 
                             <li className="nav-item">
                                 <a className="nav-link" href="login.html">
                                     Login
