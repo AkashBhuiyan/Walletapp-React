@@ -36,11 +36,10 @@ class CreateWallet extends Component {
         }
 
         WalletService.createWallet(wallet).then(res=>{
-            console.log("aaaaaa")
-            alert("Successfully created")
+            this.props.history.push('/dashboard')
         }).catch((err)=>{
             alert("Error")
-        })
+        });
         // a preventDefault is called on the event when submitting the form to prevent a browser reload/refresh
         event.preventDefault();
     }
