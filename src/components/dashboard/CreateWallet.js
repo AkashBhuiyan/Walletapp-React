@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import WalletService from '../../services/WalletService';
+import {createWallet} from '../../actions/projectActions';
+import {connect} from 'react-redux';
+import classnames from 'classnames';
 
 
 class CreateWallet extends Component {
@@ -11,13 +13,20 @@ class CreateWallet extends Component {
         name:"",
         accountNumber:"",
         description:"",
-        priority:""
+        priority:"",
+        errors:""
         
       };
 
       // This binding is necessary to make `this` work in the callback
       this.onChangeHandler = this.onChangeHandler.bind(this);
       this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.errors){
+            this.setState({errors:nextProps.errors})
+        }
     }
 
     onChangeHandler=(event)=>{
@@ -35,11 +44,7 @@ class CreateWallet extends Component {
             priority:this.state.priority
         }
 
-        WalletService.createWallet(wallet).then(res=>{
-            this.props.history.push('/dashboard')
-        }).catch((err)=>{
-            alert("Error")
-        });
+        this.props.createWallet(wallet, this.props.history);
         // a preventDefault is called on the event when submitting the form to prevent a browser reload/refresh
         event.preventDefault();
     }
@@ -55,13 +60,16 @@ class CreateWallet extends Component {
                     <hr />
                     <form onSubmit={this.onSubmitHandler}>
                         <div className="form-group">
-                            <input name="name" type="text" onChange={this.onChangeHandler} className="form-control form-control-lg " placeholder="Account Name" />
+                            <input name="name" type="text" onChange={this.onChangeHandler} className={classnames("form-control form-control-lg",{"is-invalid":this.state.errors.name})} placeholder="Account Name" />
+                            <p className="text-danger">{this.state.errors.name}</p>
                         </div>
                         <div className="form-group">
-                            <input name="accountNumber" type="text" onChange={this.onChangeHandler} className="form-control form-control-lg" placeholder="Account No" />
+                            <input name="accountNumber" type="text" onChange={this.onChangeHandler} className={classnames("form-control form-control-lg",{"is-invalid":this.state.errors.accountNumber})} placeholder="Account No" />
+                            <p className="text-danger">{this.state.errors.accountNumber}</p>
                         </div>
                         <div className="form-group">
-                            <textarea name="description" onChange={this.onChangeHandler} className="form-control form-control-lg" placeholder="Description"></textarea>
+                            <textarea name="description" onChange={this.onChangeHandler} className={classnames("form-control form-control-lg",{"is-invalid":this.state.errors.description})} placeholder="Description"></textarea>
+                            <p className="text-danger">{this.state.errors.description}</p>
                         </div>
                         <div className="form-group">
                             <select className="form-control form-control-lg" onChange={this.onChangeHandler} name="priority">
@@ -81,4 +89,9 @@ class CreateWallet extends Component {
     }
 }
 
-export default CreateWallet;
+const mapStateToProps = (state) =>({
+    errors:state.errors
+});
+
+/*Connect method to the redux store*/
+export default connect(mapStateToProps, {createWallet})(CreateWallet);
