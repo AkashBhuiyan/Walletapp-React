@@ -10,6 +10,10 @@ class WalletService{
     async createWallet(wallet){
         return await axios.post(WALLET_API_BASE_URL, wallet)
     }
+
+    async deleteWallet(id){
+        return await axios.delete(WALLET_API_BASE_URL +'/'+id)
+    }
 }
 
 export default new WalletService();
