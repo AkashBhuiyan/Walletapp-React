@@ -8,6 +8,7 @@ import CreateWallet from './components/dashboard/CreateWallet';
 import NotFound from './components/shared/NotFound';
 import {Provider} from 'react-redux';
 import store from './Store';
+import UpdateWallet from './components/dashboard/UpdateWallet';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                   <Route path="/" exact component={Home}/>
                   <Route path="/dashboard" component={Dashboard}/>
                   <Route path="/createwallet" component={CreateWallet}/>
+                  <Route path="/updatewallet/:id" component={UpdateWallet}/>
                   <Route path="/" component={NotFound}/>
             </Switch>
       </Router>

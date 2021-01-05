@@ -10,6 +10,7 @@ class DashboardItem extends Component {
         }
         
     }
+
     render() {
         const wallet = this.props.wallet;
         return (
@@ -32,7 +33,7 @@ class DashboardItem extends Component {
                                         <i className="fa fa-flag-checkered pr-1"> View Transactions </i>
                                     </li>
                                 </Link>
-                                <Link to="#">
+                                <Link to={`/updatewallet/${wallet.id}`}>
                                     <li className="list-group-item update text-info">
                                         <i className="fa fa-edit pr-1"> Update Account Info</i>
                                     </li>

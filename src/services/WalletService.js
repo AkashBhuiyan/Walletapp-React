@@ -7,8 +7,16 @@ class WalletService{
         return await axios.get(WALLET_API_BASE_URL)
     }
 
+    async getWalletById(id){
+        return await axios.get(WALLET_API_BASE_URL+'/'+id)
+    }
+
     async createWallet(wallet){
         return await axios.post(WALLET_API_BASE_URL, wallet)
+    }
+
+    async updateWallet(wallet, id){
+        return await axios.put(WALLET_API_BASE_URL+'/'+id, wallet)
     }
 
     async deleteWallet(id){
