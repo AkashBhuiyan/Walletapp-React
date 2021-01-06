@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createWallet } from '../../actions/projectActions';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import {Link} from 'react-router-dom';
 
 
 class CreateWallet extends Component {
@@ -59,6 +60,7 @@ class CreateWallet extends Component {
                     <div className="row">
                         <div className="col-md-8 m-auto">
                             <h5 className="display-4 text-center">Create Wallet</h5>
+                            <Link to="/dashboard" className="btn btn-default btn-lg mb-3">Back</Link>
                             <hr />
                             <form onSubmit={this.onSubmitHandler}>
                                 <div className="form-group">

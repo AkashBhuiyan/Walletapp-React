@@ -70,4 +70,8 @@ class AddTransaction extends Component {
     }
 }
 
-export default connect(null,{createTransaction})(AddTransaction)
+const mapStateToProps = (state) => ({
+    errors: state.errors  
+})
+
+export default connect(mapStateToProps,{createTransaction})(AddTransaction)
