@@ -11,6 +11,7 @@ import store from './Store';
 import UpdateWallet from './components/dashboard/UpdateWallet';
 import Transaction from './components/transactions/Transaction';
 import AddTransaction from './components/transactions/AddTransaction';
+import Footer from './components/shared/Footer';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                   <Route path="/transaction/add/:id" exact component={AddTransaction}/>
                   <Route path="/" component={NotFound}/>
             </Switch>
+            <Footer/>
       </Router>
     </Provider>
   );

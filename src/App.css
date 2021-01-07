@@ -14,3 +14,13 @@ body {
 .error-actions .btn {
   margin-right: 10px;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height:50px;
+  background-color: #e1e4eb;
+  text-align: center;
+  color: #61dafb;
+}
